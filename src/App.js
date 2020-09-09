@@ -38,7 +38,7 @@ function App() {
       {isLoading?<div>Loading...</div>:null}
       <ul className="repolist">{repos.map(repo=>{
           return <li key={repo.id} className="repoitem">
-            <a href={repo.html_url} target="_blank">{repo.name}</a>
+            <a href={repo.html_url} target="_blank">{repo.html_url}</a>
             <p>{repo.description}</p>
             </li>
        })}</ul>
