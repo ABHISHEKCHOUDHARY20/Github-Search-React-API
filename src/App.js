@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   const [inputValue, setInputValue] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
-  const [repos, setRepos] = React.useState([]);
+  const [users, setUsers] = React.useState([]);
 
   React.useEffect(()=>{
     if(!inputValue){
@@ -17,14 +17,14 @@ function App() {
    fetch('https://api.github.com/search/users?q='+inputValue)
         .then(response => response.json())
         .then(data =>{
-          console.log(data);
+          console.log(data)
           setIsLoading(false);
-          setRepos(data.items)
+          setUsers(data.items)
         
         });
   }, [inputValue]);
-
-  console.log(repos);
+  
+  console.log(users)
   return (
     <div >
       <form onSubmit={evt=>{
@@ -36,10 +36,10 @@ function App() {
       <input className="github_search" type="text" name="query" placeholder="Search Github"/>
       </form>
       {isLoading?<div>Loading...</div>:null}
-      <ul className="repolist">{repos.map(repo=>{
-          return <li key={repo.id} className="repoitem">
-            <a href={repo.html_url} target="_blank">{repo.html_url}</a>
-            <p>{repo.description}</p>
+      <ul className="userslist">{users.map(user=>{
+          return <li key={user.id} className="usersitem">
+              <p>{user.login}</p>
+              <a href={user.html_url} target="_blank">{user.html_url}</a>
             </li>
        })}</ul>
      </div>
