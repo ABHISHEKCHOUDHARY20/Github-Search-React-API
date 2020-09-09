@@ -14,7 +14,7 @@ function App() {
     } 
     setIsLoading(true);
     // 
-   fetch('https://api.github.com/search/repositories?q='+inputValue)
+   fetch('https://api.github.com/search/users?q='+inputValue)
         .then(response => response.json())
         .then(data =>{
           console.log(data);
